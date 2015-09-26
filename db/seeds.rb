@@ -20,3 +20,13 @@ end
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+
+Post.create!(
+  title: "I have thoughts",
+  body: "But I've forgetten"
+)
+
+Comment.create!(
+  post: Post.where(title: "I have thoughts").take!,
+  body: "Profound."
+)
