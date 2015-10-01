@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  skip_before_action :flash_attack, :only => [:index, :new]
+  
   def index
     @posts = Post.all
   end
@@ -10,7 +12,7 @@ class PostsController < ApplicationController
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = Post.new(params.require(:post).permit(:title, :body))
     if @post.save
