@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  get 'advertisements/index'
-
-  get 'advertisements/show'
-
-  resources :posts, :advertisements
+  resources :posts
+  resources :advertisements, only: [:index, :show]
 
   get 'about' => 'welcome#about'
 
