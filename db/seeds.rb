@@ -17,9 +17,18 @@ posts = Post.all
   )
 end
 
+10.times do
+  Question.create!(
+    title: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraph,
+    resolved: false
+  )
+end
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Question.count} questions created"
 
 Post.create!(
   title: "I have thoughts",
@@ -29,4 +38,10 @@ Post.create!(
 Comment.create!(
   post: Post.where(title: "I have thoughts").take!,
   body: "Profound."
+)
+
+Question.create!(
+  title: "How's this workin?",
+  body: "I have nothing to add.",
+  resolved: true
 )
