@@ -25,6 +25,7 @@ group :development do
   gem 'spring'
   gem 'sqlite3'
   gem 'guard'
+  gem 'guard-rubocop'
 end
 
 group :production do

@@ -14,3 +14,8 @@
 #  $ ln -s config/Guardfile .
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
+
+guard :rubocop do
+  watch(%r{.+\.rb$})
+  watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
+end
