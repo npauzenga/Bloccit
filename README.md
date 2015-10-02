@@ -1,4 +1,3 @@
-[![Build Status](https://img.shields.io/travis/Skookum/eventum.svg)][travis]
 [![Build Status](https://travis-ci.org/npauzenga/Bloccit.svg)][travis]
 [![Coverage Status](https://coveralls.io/repos/npauzenga/Bloccit/badge.svg?branch=master&service=github)][coveralls]
 
