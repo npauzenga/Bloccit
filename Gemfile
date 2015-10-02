@@ -26,6 +26,7 @@ group :development do
   gem 'sqlite3'
   gem 'guard'
   gem 'guard-rubocop'
+  gem 'rubocop-rspec'
 end
 
 group :production do
