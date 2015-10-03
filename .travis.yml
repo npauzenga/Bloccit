@@ -3,6 +3,5 @@ rvm:
   - 2.1
   - 2.2
   - ruby-head
-  - jruby-head
 install:
   - bundle install --retry=3
