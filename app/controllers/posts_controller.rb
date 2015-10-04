@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   skip_before_action :flash_attack, :only => [:index, :new]
-  
+
   def index
-    @posts = Post.all
+    @posts = policy_scope(Post)
     authorize @posts
   end
 
