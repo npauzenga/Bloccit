@@ -11,7 +11,7 @@ class PostPolicy < ApplicationPolicy
       if user.present?
         user.admin? || user.moderator? ? scope.all : scope.where(user: user)
       else
-        raise Pundit::NotAuthorizedError
+        fail Pundit::NotAuthorizedError
       end
     end
   end
