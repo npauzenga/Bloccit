@@ -1,10 +1,5 @@
 class PostsController < ApplicationController
   skip_before_action :flash_attack, :only => [:index, :new]
-  
-  def index
-    @posts = Post.all
-    authorize @posts
-  end
 
   def show
     @post = Post.find(params[:id])
