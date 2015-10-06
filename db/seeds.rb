@@ -1,6 +1,6 @@
 require 'faker'
 
-# Create Users
+# Create generic members
 5.times do
   user = User.new(
     name:     Faker::Name.name,
@@ -41,6 +41,15 @@ posts = Post.all
   )
 end
 
+# create advertisements
+10.times do
+  Advertisement.create!(
+    title: Faker::Lorem.sentence,
+    copy: Faker::Lorem.paragraph,
+    price: Faker::Commerce.price
+  )
+end
+
 # Create an admin user
 admin = User.new(
   name:     "Admin User",
@@ -74,3 +83,4 @@ puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Advertisement.count} advertisements created"
