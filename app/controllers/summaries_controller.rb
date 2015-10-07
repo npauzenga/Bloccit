@@ -1,13 +1,12 @@
 class SummariesController < ApplicationController
   def new
-    @post = Post.find(params[:post_id])
     @summary = Summary.new
     authorize @summary
   end
 
   def create
-    #@topic = Topic.find(params[:topic_id])
-    #@post = Post.find(params[:post_id])
+    @topic = Topic.find(params[:topic_id])
+    @post = Post.find(params[:post_id])
     @summary = Summary.new(summary_params)
 
     authorize @summary
