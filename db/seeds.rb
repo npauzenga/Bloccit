@@ -41,6 +41,15 @@ posts = Post.all
   )
 end
 
+# create questions
+10.times do
+  Question.create!(
+    title: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraph,
+    resolved: false
+  )
+end
+
 # create advertisements
 10.times do
   Advertisement.create!(
@@ -84,3 +93,4 @@ puts "#{User.count} users created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
 puts "#{Advertisement.count} advertisements created"
+puts "#{Question.count} questions created"
