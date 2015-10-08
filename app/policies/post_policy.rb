@@ -8,11 +8,8 @@ class PostPolicy < ApplicationPolicy
     end
 
     def resolve
-      if user.present?
-        user.admin? || user.moderator? ? scope.all : scope.where(user: user)
-      else
-        fail Pundit::NotAuthorizedError
-      end
+      fail Pundit::NotAuthorizedError unless user.present?
+      user.admin? || user.moderator? ? scope.all : scope.where(user: user)
     end
   end
 
