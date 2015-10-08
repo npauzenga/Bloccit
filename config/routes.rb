@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :advertisements, only: [:index, :show]
   devise_for :users
+  resources :users, only: [:update]
 
 
   resources :topics do
