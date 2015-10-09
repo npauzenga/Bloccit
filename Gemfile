@@ -15,6 +15,7 @@ gem "devise"
 gem "figaro", "1.0"
 gem "coveralls", require: false
 gem "pundit"
+gem "redcarpet"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution
