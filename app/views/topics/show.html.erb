@@ -11,7 +11,8 @@
       <div class="media">
         <div class="media-body">
           <h4 class="media-heading">
-            <%= link_to post.title, [@topic, post] %>
+            <%= link_to post.title, [@topic, post] %><br>
+            <p id="summary"><%= post.summary.body if post.summary != nil %></p>
           </h4>
           <small>
             submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
