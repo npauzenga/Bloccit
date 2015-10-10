@@ -28,6 +28,26 @@ class SummariesController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:post_id])
+    @summary = @post.summary
+    authorize @post
+  end
+
+  def update
+    @post = Post.find(params[:post_id])
+    @summary = @post.summary
+    authorize @post
+
+    if @summary.update_attributes(params.require(:summary).permit(:body))
+      flash[:notice] = "Summary was updated."
+      redirect_to @summary
+    else
+      flash[:error] = "There was an error saving the Summary. Please try again."
+      render :edit
+    end
+  end
+
   private
 
   def summary_params
