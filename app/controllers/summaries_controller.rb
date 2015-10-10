@@ -12,7 +12,7 @@ class SummariesController < ApplicationController
     authorize @summary
     if @summary.save
       flash[:notice] = "Summary was saved."
-      redirect_to url: topic_post_summary_path
+      redirect_to @summary
     else
       flash[:error] = "There was an error saving the Summary. Please try again."
       render :new
