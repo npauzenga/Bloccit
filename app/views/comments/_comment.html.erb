@@ -1,5 +1,5 @@
 <div class="comment-byline">
-  <%= comment.user.name %> opined...
+  <%= comment.user.name || comment.user.email %> opined...
 </div>
 <div class="comment">
   <%= comment.body %>
