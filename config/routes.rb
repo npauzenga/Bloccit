@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+
   resources :posts, :questions
   resources :advertisements, only: [:index, :show]
   devise_for :users
