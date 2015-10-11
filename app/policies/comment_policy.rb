@@ -1,5 +1,6 @@
 class CommentPolicy < ApplicationPolicy
-  def new?
+  def show?
+    create?
   end
 
   def create?
