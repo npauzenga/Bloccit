@@ -16,6 +16,10 @@ gem "figaro", "1.0"
 gem "coveralls", require: false
 gem "pundit"
 gem "redcarpet"
+gem "carrierwave"
+gem "mini_magick"
+gem "fog"
+gem "will_paginate", "~> 3.0.5"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution
@@ -33,6 +37,8 @@ group :development do
   gem "guard"
   gem "guard-rubocop"
   gem "rubocop-rspec"
+  gem "binding_of_caller"
+  gem "better_errors"
 end
 
 group :production do

@@ -14,16 +14,23 @@
             <%= link_to post.markdown_title, [@topic, post] %>
           </h4>
           <small>
-            submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %> <br>
-            <%= post.comments.count %> Comments
+            <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
+            submitted <%= time_ago_in_words(post.created_at) %> ago <body>
+            <%= post.user.name %><br>
+            <%= post.comments.count %> comments
           </small>
         </div>
       </div>
     <% end %>
+    <%= will_paginate @posts %>
   </div>
   <div class="col-md-4">
     <% if policy(Post.new).create? %>
       <%= link_to "New Post", new_topic_post_path(@topic), class: 'btn btn-success' %>
+    <% end %>
+
+    <% if policy(@topic).destroy? %>
+      <%= link_to "Delete Topic", @topic, method: :delete, class: 'btn btn-danger', data: { confirm: "Are you sure?"} %>
     <% end %>
   </div>
 </div>
