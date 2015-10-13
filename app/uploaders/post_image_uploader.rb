@@ -1,5 +1,5 @@
 # encoding: utf-8
-class AvatarUploader < CarrierWave::Uploader::Base
+class PostImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
@@ -18,7 +18,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name,
-  #   # "default.png"].compact.join('_'))
+  #    "default.png"].compact.join('_'))
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
@@ -42,15 +42,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [30, 30]
   end
 
-  version :profile do
-    process resize_to_fill: [45, 45]
-  end
-
   # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
   def extension_white_list
     %w(jpg jpeg gif png)
   end

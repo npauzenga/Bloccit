@@ -37,6 +37,8 @@ group :development do
   gem "guard"
   gem "guard-rubocop"
   gem "rubocop-rspec"
+  gem "binding_of_caller"
+  gem "better_errors"
 end
 
 group :production do
