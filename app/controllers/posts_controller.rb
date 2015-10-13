@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
+    @comments = @post.comments
     authorize @post
   end
 
@@ -44,6 +45,20 @@ class PostsController < ApplicationController
     else
       flash[:error] = "There was an error saving the post. Please try again."
       render :edit
+    end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @topic = Topic.find(params[:topic_id])
+    authorize @post
+
+    if @post.destroy
+      flash[:notice] = "#{@post.title} was deleted"
+      redirect_to @topic
+    else
+      flash[:error] = "Something went wrong"
+      render :show
     end
   end
 
