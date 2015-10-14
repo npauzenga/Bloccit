@@ -4,6 +4,8 @@ class Post < ActiveRecord::Base
   belongs_to :user
   belongs_to :topic
 
+  mount_uploader :post_image, PostImageUploader
+
   default_scope { order(created_at: :desc) }
   scope :ordered_by_title, -> { reorder(title: :asc) }
   scope :ordered_by_reverse_created_at, -> { reorder(created_at: :asc) }
@@ -23,5 +25,21 @@ class Post < ActiveRecord::Base
 
   def points
     votes.sum(:value)
+
+  def markdown_title
+    render_as_markdown(title)
+  end
+
+  def markdown_body
+    render_as_markdown(body)
+  end
+
+  private
+
+  def render_as_markdown(markdown)
+    renderer = Redcarpet::Render::HTML.new
+    extensions = {fenced_code_blocks: true}
+    redcarpet = Redcarpet::Markdown.new(renderer, extensions)
+    (redcarpet.render markdown).html_safe
   end
 end
