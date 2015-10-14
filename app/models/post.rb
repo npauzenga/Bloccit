@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
   end
 
   def update_rank
-    age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 *24)
+    age_in_days = (created_at - Time.new(1970, 1, 1)) / (60 * 60 * 24)
     new_rank = points + age_in_days
 
     update_attribute(:rank, new_rank)
@@ -46,7 +46,7 @@ class Post < ActiveRecord::Base
 
   def render_as_markdown(markdown)
     renderer = Redcarpet::Render::HTML.new
-    extensions = {fenced_code_blocks: true}
+    extensions = { fenced_code_blocks: true }
     redcarpet = Redcarpet::Markdown.new(renderer, extensions)
     (redcarpet.render markdown).html_safe
   end

@@ -2,9 +2,10 @@ require "rails_helper"
 
 describe Vote do
   describe "validations" do
-
     before do
-      @post = Post.create(id: 1, title: "test post", body: "this should meet the requirements")
+      @post = Post.create(id:    1,
+                          title: "test post",
+                          body:  "this should meet the requirements")
       @vote = @post.votes.create(value: 1, post_id: 1)
     end
 
