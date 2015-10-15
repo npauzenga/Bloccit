@@ -1,5 +1,5 @@
 module TestFactories
-  def associated_post(options={})
+  def associated_post( options={} )
     post_options = {
       title: "Post title",
       body:  "Post bodies must be pretty long.",
@@ -15,7 +15,7 @@ module TestFactories
       email:    "email#{rand}@fake.com",
       password: "password"
     }.merge(options)
-    
+
     user = User.new(user_options)
     user.skip_confirmation!
     user.save

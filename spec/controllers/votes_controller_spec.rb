@@ -12,8 +12,8 @@ describe VotesController do
       sign_in @user
 
       expect {
-        post( :up_vote, post_id: @post.id )
-      }.to change{ @post.up_votes }.by 1
+        post(:up_vote, post_id: @post.id)
+      }.to change{@post.up_votes}.by 1
     end
   end
 end
