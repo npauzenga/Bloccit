@@ -35,5 +35,16 @@ describe Post do
         expect(post.up_votes).to eq(1)
       end
     end
+
+    describe "#save_with_initial_vote" do
+      it "saves a post only if the initial vote saves as well" do
+        post = described_class.new(title: "Check One Two",
+                        body:  "Sibilance. Sibilance.",
+                        user:  authenticated_user,
+                        created_at: Time.new)
+        post.save_with_initial_vote
+        expect(post.present?).to eq(true)
+      end
+    end
   end
 end

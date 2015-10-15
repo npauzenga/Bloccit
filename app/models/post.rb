@@ -46,6 +46,13 @@ class Post < ActiveRecord::Base
     user.votes.create(post: self, value: 1)
   end
 
+  def save_with_initial_vote
+    ActiveRecord::Base.transaction do
+      save
+      user.votes.create(post: self, value: 1)
+    end
+  end
+
   def render_as_markdown(markdown)
     renderer = Redcarpet::Render::HTML.new
     extensions = { fenced_code_blocks: true }
