@@ -1,5 +1,5 @@
 module TestFactories
-  def associated_post( options={} )
+  def associated_post(options = {})
     post_options = {
       title: "Post title",
       body:  "Post bodies must be pretty long.",
@@ -10,7 +10,7 @@ module TestFactories
     Post.create(post_options)
   end
 
-  def authenticated_user(options={})
+  def authenticated_user(options = {})
     user_options = {
       email:    "email#{rand}@fake.com",
       password: "password"

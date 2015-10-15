@@ -18,6 +18,6 @@ class User < ActiveRecord::Base
   end
 
   def favorited(post)
-    favorites.where(post_id: post.id).first
+    favorites.find_by(post_id: post.id)
   end
 end
