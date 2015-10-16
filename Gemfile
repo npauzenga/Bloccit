@@ -26,6 +26,8 @@ group :development, :test do
   # and get a debugger console
   gem "byebug"
   gem "rspec-rails", "~> 3.0"
+  gem "vcr"
+  gem "webmock"
 end
 
 group :development do
