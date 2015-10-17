@@ -8,7 +8,7 @@ describe Comment do
       @post = associated_post
       @user = authenticated_user(email_favorites: true)
       @other_user = authenticated_user
-      @comment = Comment.new(body: "My comment is really great",
+      @comment = described_class.new(body: "My comment is really great",
                              post: @post,
                              user: @other_user)
     end
@@ -21,8 +21,7 @@ describe Comment do
         .with(@user, @post, @comment)
         .and_return(double(deliver_now: true))
 
-        expect(FavoriteMailer)
-          .to receive(:new_comment)
+      expect(FavoriteMailer).to receive(:new_comment)
 
       @comment.save
     end
