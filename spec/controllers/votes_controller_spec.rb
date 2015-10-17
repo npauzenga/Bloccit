@@ -13,7 +13,7 @@ describe VotesController do
 
       expect {
         post(:up_vote, post_id: @post.id)
-      }.to change{@post.up_votes}.by 1
+      }.to change{ @post.up_votes }.by 1
     end
   end
 end
