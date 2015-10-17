@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
   def favorited(post)
     favorites.find_by(post_id: post.id)
   end
+
+  def voted(post)
+    votes.find_by(post_id: post.id)
+  end
 end

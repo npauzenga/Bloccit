@@ -26,6 +26,7 @@ group :development, :test do
   # and get a debugger console
   gem "byebug"
   gem "rspec-rails", "~> 3.0"
+  gem "capybara"
 end
 
 group :development do
