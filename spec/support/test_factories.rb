@@ -21,4 +21,15 @@ module TestFactories
     user.save
     user
   end
+
+  def public_topic
+    described_class.create(name:        "Topic Name",
+                           description: "Topic description")
+  end
+
+  def private_topic
+    described_class.create(name:        "Topic Name",
+                           description: "Topic description",
+                           public:      false)
+  end
 end
