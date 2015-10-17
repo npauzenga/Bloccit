@@ -38,12 +38,9 @@ describe Post do
 
     describe "#save_with_initial_vote" do
       it "saves a post only if the initial vote saves as well" do
-        post = described_class.new(title: "Check One Two",
-                        body:  "Sibilance. Sibilance.",
-                        user:  authenticated_user,
-                        created_at: Time.new)
-        post.save_with_initial_vote
-        expect(post.present?).to eq(true)
+        post = associated_post_unsaved
+        expect(post.save_with_initial_vote).to be_a Vote
+        expect(post).to be_persisted
       end
     end
   end
