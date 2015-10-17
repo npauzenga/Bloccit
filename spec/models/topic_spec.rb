@@ -1,17 +1,8 @@
 require "rails_helper"
 
 describe Topic do
+  include TestFactories
   describe "scopes" do
-    let(:public_topic) do
-      described_class.create(name:        "Topic Name",
-                             description: "Topic description")
-    end
-    let(:private_topic) do
-      described_class.create(name:        "Topic Name",
-                             description: "Topic description",
-                             public:      false)
-    end
-
     describe "publicly_viewable" do
       it "returns a relation of all public topics" do
         expect(described_class.publicly_viewable).to eq([public_topic])
