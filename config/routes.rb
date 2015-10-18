@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :posts, :questions
   resources :advertisements, only: [:index, :show]
   devise_for :users
-  resources :users, only: [:update]
+  resources :users, only: [:update, :show]
 
   resources :topics do
     resources :posts, except: [:index]
