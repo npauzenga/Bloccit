@@ -12,6 +12,7 @@ module TestFactories
 
   def authenticated_user(options = {})
     user_options = {
+      name:     "Darth Vader",
       email:    "email#{rand}@fake.com",
       password: "password"
     }.merge(options)
@@ -23,13 +24,13 @@ module TestFactories
   end
 
   def public_topic
-    described_class.create(name:        "Topic Name",
-                           description: "Topic description")
+    Topic.create(name:        "Topic Name",
+                 description: "Topic description")
   end
 
   def private_topic
-    described_class.create(name:        "Topic Name",
-                           description: "Topic description",
-                           public:      false)
+    Topic.create(name:        "Topic Name",
+                 description: "Topic description",
+                 public:      false)
   end
 end
