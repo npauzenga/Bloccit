@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
-  get 'comments/create'
+  get "comments/create"
 
   resources :posts, :questions
   resources :advertisements, only: [:index, :show]
   devise_for :users
-  resources :users, only: [:update, :show]
+  resources :users, only: [:update, :show, :index]
 
   resources :topics do
-    resources :posts, except: [:index]
+    resources :posts, except: [:index], controller: "topics/posts"
   end
 
-  resources :posts, only: [] do
+  resources :posts, only: [:index] do
     resources :comments, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
 
@@ -18,8 +18,8 @@ Rails.application.routes.draw do
     post "/down-vote" => "votes#down_vote", as: :down_vote
   end
 
-  get 'about' => 'welcome#about'
-  get 'welcome/contact'
+  get "about" => "welcome#about"
+  get "welcome/contact"
 
-  root to: 'welcome#index'
+  root to: "welcome#index"
 end
