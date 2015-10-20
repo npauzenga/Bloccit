@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     resources :posts, except: [:index]
   end
 
-  resources :posts do
-    resource :summary
+  resources :posts, shallow: true do
+    resources :summaries
   end
 
   get 'about' => 'welcome#about'
