@@ -3,6 +3,9 @@ require "rails_helper"
 describe Post do
   include TestFactories
   describe "vote methods" do
+    let(:unsaved_post) { associated_post_unsaved }
+    let(:post) { associated_post }
+
     before do
       @post = associated_post
       3.times { @post.votes.create(value: 1) }
@@ -29,10 +32,22 @@ describe Post do
 
     describe "#create_vote" do
       it "generates an up-vote when explicitly called" do
-        post = associated_post
         expect(post.up_votes).to eq(0)
         post.create_vote
         expect(post.up_votes).to eq(1)
+      end
+    end
+
+    describe "#save_with_initial_vote" do
+      it "saves a post only if the initial vote saves as well" do
+        unsaved_post.save_with_initial_vote
+        expect(unsaved_post).to be_persisted
+      end
+
+      it "associates a Vote object with the post" do
+        unsaved_post.save_with_initial_vote
+        expect(unsaved_post.votes.first).to be_a Vote
+        expect(unsaved_post.votes.first).to be_persisted
       end
     end
   end
