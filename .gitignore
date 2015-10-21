@@ -21,3 +21,8 @@
 
 # CarrierWave images
 public/uploads
+
+# RSpec examples
+spec/examples.txt
+
+config/secrets.yml

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
 
   def admin?
@@ -14,5 +15,13 @@ class User < ActiveRecord::Base
 
   def moderator?
     role == "moderator"
+  end
+
+  def favorited(post)
+    favorites.find_by(post_id: post.id)
+  end
+
+  def voted(post)
+    votes.find_by(post_id: post.id)
   end
 end
