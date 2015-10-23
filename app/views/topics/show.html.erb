@@ -14,6 +14,7 @@
           <h4 class="media-heading">
             <%= image_tag(post.post_image.small.url) if post.post_image? %>
             <%= link_to (markdown_to_html post.title), [@topic, post] %>
+            <p id="summary"><%= post.summary.body if post.summary != nil %></p>
           </h4>
           <small>
             submitted <%= time_ago_in_words(post.created_at) %> ago by

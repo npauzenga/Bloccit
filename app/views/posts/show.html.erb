@@ -35,5 +35,10 @@
       <%= render partial: "comments/form", locals: { topic: @topic, post: @post } %>
     </div>
     <% end %>
+    <% if @post.summary %>
+      <%= link_to "Edit Summary", edit_summary_path(@post, @summary), class: 'btn btn-success' %>
+    <% else %>
+      <%= link_to "New Summary", new_post_summary_path(@post, @summary), class: 'btn btn-success' %>
+    <% end %>
   </div>
 </div>
