@@ -1,0 +1,9 @@
+<%= form_for [post, post.comments.new], remote: true do |f| %>
+ <div class="form-group">
+   <%= f.label :comment %>
+   <%= f.text_area :body, class: 'form-control', placeholder: "Enter comment" %>
+ </div>
+ <div class="form-group">
+   <%= f.submit "Post Comment", class: 'btn btn-success' %>
+ </div>
+<% end %>

@@ -1,6 +1,6 @@
 require 'faker'
 
-# Create Users
+# Create generic members
 5.times do
   user = User.new(
     name:     Faker::Name.name,
@@ -13,7 +13,7 @@ end
 users = User.all
 
 # Create topics
-15.times do
+150.times do
   Topic.create!(
     name:        Faker::Lorem.sentence,
     description: Faker::Lorem.paragraph
@@ -22,13 +22,17 @@ end
 topics = Topic.all
 
 # create posts
-50.times do
-  Post.create!(
+500.times do
+  post = Post.create!(
     user:   users.sample,
     topic:  topics.sample,
     title:  Faker::Lorem.sentence,
     body:   Faker::Lorem.paragraph
   )
+
+  post.update_attributes!(created_at: rand(10.minutes .. 1.year).ago)
+  post.update_rank
+  post.create_vote
 end
 posts = Post.all
 
@@ -43,9 +47,27 @@ end
 # create comments
 100.times do
   Comment.create!(
-    # user: users.sample,
+    user: users.sample,
     post: posts.sample,
     body: Faker::Lorem.paragraph
+  )
+end
+
+# create questions
+10.times do
+  Question.create!(
+    title: Faker::Lorem.sentence,
+    body: Faker::Lorem.paragraph,
+    resolved: false
+  )
+end
+
+# create advertisements
+10.times do
+  Advertisement.create!(
+    title: Faker::Lorem.sentence,
+    copy: Faker::Lorem.paragraph,
+    price: Faker::Commerce.price
   )
 end
 
@@ -83,3 +105,5 @@ puts "#{Summary.count} summaries created"
 puts "#{User.count} users created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
+puts "#{Advertisement.count} advertisements created"
+puts "#{Question.count} questions created"

@@ -1,31 +1,53 @@
 require "rails_helper"
 
 describe Post do
+  include TestFactories
   describe "vote methods" do
+    let(:unsaved_post) { associated_post_unsaved }
+    let(:post) { associated_post }
+
     before do
-      let(:post) do
-        described_class.create(title: "post title",
-                               body:  "post body")
-      end
-      3.times { post.votes.create(value: 1) }
-      2.times { post.votes.create(value: -1) }
+      @post = associated_post
+      3.times { @post.votes.create(value: 1) }
+      2.times { @post.votes.create(value: -1) }
     end
 
     describe "#up_votes" do
       it "counts the number of votes with value = 1" do
-        expect(post.up_votes).to eq(3)
+        expect(@post.up_votes).to eq(3)
       end
     end
 
     describe "#down_votes" do
       it "counts the number of votes with value = -1" do
-        expect(post.down_votes).to eq(2)
+        expect(@post.down_votes).to eq(2)
       end
     end
 
     describe "#points" do
       it "returns the sum of all down and up votes" do
-        expect(post.points).to eq(1)
+        expect(@post.points).to eq(1)
+      end
+    end
+
+    describe "#create_vote" do
+      it "generates an up-vote when explicitly called" do
+        expect(post.up_votes).to eq(0)
+        post.create_vote
+        expect(post.up_votes).to eq(1)
+      end
+    end
+
+    describe "#save_with_initial_vote" do
+      it "saves a post only if the initial vote saves as well" do
+        unsaved_post.save_with_initial_vote
+        expect(unsaved_post).to be_persisted
+      end
+
+      it "associates a Vote object with the post" do
+        unsaved_post.save_with_initial_vote
+        expect(unsaved_post.votes.first).to be_a Vote
+        expect(unsaved_post.votes.first).to be_persisted
       end
     end
   end

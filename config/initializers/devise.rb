@@ -6,22 +6,22 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '208263ed6c97988c170b882173f4445139983666800984d731460ecc5bf39c4488c7e7967c3ea21cb8be2edb9cadb8c745277ba6115416de303c62eb18efd50f'
+  config.secret_key = '<%= ENV[DEVISE_SECRET_KEY] %>'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = "donotreply@thisisatest.com"
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  # config.mailer = "Devise::Mailer"
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require "devise/orm/active_record"
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -66,8 +66,8 @@ Devise.setup do |config|
   # If 401 status code should be returned for AJAX requests. True by default.
   # config.http_authenticatable_on_xhr = true
 
-  # The realm used in Http Basic Authentication. 'Application' by default.
-  # config.http_authentication_realm = 'Application'
+  # The realm used in Http Basic Authentication. "Application" by default.
+  # config.http_authentication_realm = "Application"
 
   # It will change confirmation, password recovery and other workflows
   # to behave the same regardless if the e-mail provided was right or wrong.
@@ -77,7 +77,7 @@ Devise.setup do |config|
   # By default Devise will store the user in session. You can skip storage for
   # particular strategies by setting this option.
   # Notice that if you are skipping storage for all authentication paths, you
-  # may want to disable generating routes to Devise's sessions controller by
+  # may want to disable generating routes to Devise"s sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
   config.skip_session_storage = [:http_auth]
 
@@ -99,7 +99,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = '6a1d6f4044557f97c42f2ad21a118c65d6c571eefae54b0915e22942a8576c498a10fea6bba0712ead70d2f9e8cdf737b5e557be38a247b93ab0b1679ccfbc77'
+  # config.pepper = "6a1d6f4044557f97c42f2ad21a118c65d6c571eefae54b0915e22942a8576c498a10fea6bba0712ead70d2f9e8cdf737b5e557be38a247b93ab0b1679ccfbc77"
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -112,7 +112,7 @@ Devise.setup do |config|
   # A period that the user is allowed to confirm their account before their
   # token becomes invalid. For example, if set to 3.days, the user can confirm
   # their account within 3 days after the mail was sent, but on the fourth day
-  # their account can't be confirmed with the token any more.
+  # their account can"t be confirmed with the token any more.
   # Default is nil, meaning there is no restriction on how long a user can take
   # before confirming their account.
   # config.confirm_within = 3.days
