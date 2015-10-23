@@ -21,6 +21,10 @@ gem "mini_magick"
 gem "fog"
 gem "will_paginate", "~> 3.0.5"
 
+group :test do
+  gem "database_cleaner"
+end
+
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution
   # and get a debugger console
