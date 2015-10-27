@@ -7,8 +7,6 @@ describe "Visiting profiles" do
   let(:post) { associated_post(user: user) }
 
   before do
-    # @user = authenticated_user
-    # @post = associated_post(user: @user)
     @comment = Comment.new(user: user, post: post, body: "A Comment")
     allow(@comment).to receive(:send_favorite_emails)
     @comment.save!
@@ -27,12 +25,10 @@ describe "Visiting profiles" do
 
   describe "user visiting their own profile" do
     before do
-      # @user = authenticated_user
       login_as(user, scope: :user)
     end
 
     it "shows profile" do
-      byebug
       visit user_path(user)
       expect(current_path).to eq(user_path(user))
       expect(page).to have_content(user.name)
