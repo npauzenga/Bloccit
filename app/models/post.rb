@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
   belongs_to :user
   belongs_to :topic
+  has_one :summary
 
   mount_uploader :post_image, PostImageUploader
 
@@ -46,6 +47,13 @@ class Post < ActiveRecord::Base
 
   def create_vote
     user.votes.create(post: self, value: 1)
+  end
+
+  def save_with_initial_vote
+    ActiveRecord::Base.transaction do
+      save
+      user.votes.create(post: self, value: 1)
+    end
   end
 
   def render_as_markdown(markdown)

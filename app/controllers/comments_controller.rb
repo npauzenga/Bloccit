@@ -1,17 +1,22 @@
 class CommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
+    @comments = @post.comments
     @comment = @post.comments.new(comment_params)
     @comment.post = @post
     @comment.user = current_user
+    @new_comment = Comment.new
 
     authorize @comment
     if @comment.save
       flash[:notice] = "Comment submitted!"
-      redirect_to [@post.topic, @post]
     else
       flash[:error] = "Comment did not save correctly"
-      redirect_to [@post.topic, @post]
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -22,11 +27,14 @@ class CommentsController < ApplicationController
     authorize @comment
     if @comment.destroy
       flash[:notice] = "Comment was removed."
-      redirect_to [@post.topic, @post]
     else
       flash[:error] = "There was an issue"
-      redirect_to [@post.topic, @post]
     end
+  end
+
+  respond_to do |format|
+    format.html
+    format.js
   end
 
   private

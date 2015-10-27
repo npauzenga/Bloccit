@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20151015143708) do
 
+
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
     t.text     "copy"

@@ -1,5 +1,5 @@
 module TestFactories
-  def associated_post(options = {})
+  def associated_post_unsaved(options = {})
     post_options = {
       title: "Post title",
       body:  "Post bodies must be pretty long.",
@@ -8,7 +8,11 @@ module TestFactories
       user:  authenticated_user
     }.merge(options)
 
-    Post.create(post_options)
+    Post.new(post_options)
+  end
+
+  def associated_post(options = {})
+    associated_post_unsaved(options).tap { |post| post.save }
   end
 
   def authenticated_user(options = {})

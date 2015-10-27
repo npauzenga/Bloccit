@@ -36,6 +36,14 @@ topics = Topic.all
 end
 posts = Post.all
 
+# create summaries
+50.times do
+  Summary.create!(
+    post: posts.sample,
+    body: Faker::Lorem.paragraph
+  )
+end
+
 # create comments
 100.times do
   Comment.create!(
@@ -93,6 +101,7 @@ member.skip_confirmation!
 member.save!
 
 puts "Seed finished"
+puts "#{Summary.count} summaries created"
 puts "#{User.count} users created"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
