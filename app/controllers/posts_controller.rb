@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
-    @topic = Topic.find(params[:topic_id])
+    @topic = @post.topic
     @comments = @post.comments
     @comment = Comment.new
     authorize @post
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @topic = Topic.find(params[:topic_id])
+    @topic = @post.topic
     authorize @post
 
     if @post.destroy
