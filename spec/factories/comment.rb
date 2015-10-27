@@ -6,6 +6,7 @@ FactoryGirl.define do
 
     after(:build) do |comment|
       comment.class.skip_callback(:create, :after, :send_favorite_emails)
+      Comment.set_callback(:create, :after, :send_favorite_emails)
     end
   end
 end

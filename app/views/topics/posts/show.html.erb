@@ -26,9 +26,19 @@
     </div>
     <%= render partial: "favorites/favorite", locals: { post: @post } %>
     <% end %>
-    <%= render partial: "comments/comment", collection: @comments %>
+    <h2>Comments</h2>
+    <div class="js-comments">
+      <%= render partial: "comments/comment", collection: @comments %>
+    </div>
     <% if policy(@comment).create? %>
+    <div class="new-comment">
       <%= render partial: "comments/form", locals: { topic: @topic, post: @post } %>
+    </div>
+    <% end %>
+    <% if @post.summary %>
+      <%= link_to "Edit Summary", edit_summary_path(@post, @summary), class: 'btn btn-success' %>
+    <% else %>
+      <%= link_to "New Summary", new_post_summary_path(@post, @summary), class: 'btn btn-success' %>
     <% end %>
   </div>
 </div>

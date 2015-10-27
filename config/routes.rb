@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get "comments/create"
 
-  resources :posts, :questions
+  resources :questions
   resources :advertisements, only: [:index, :show]
   devise_for :users
   resources :users, only: [:update, :show, :index]
@@ -10,7 +10,11 @@ Rails.application.routes.draw do
     resources :posts, except: [:index], controller: "topics/posts"
   end
 
-  resources :posts, only: [:index] do
+  resources :posts, shallow: true do
+    resources :summaries
+  end
+
+  resources :posts, only: [] do
     resources :comments, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
 
