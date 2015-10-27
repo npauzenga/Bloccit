@@ -5,17 +5,17 @@ describe Comment do
 
   describe "after_create" do
     before do
-      @post = associated_post
       @user = authenticated_user(email_favorites: true)
+      @post = associated_post
       @other_user = authenticated_user
       @comment = described_class.new(body: "My comment is really great",
-                             post: @post,
-                             user: @other_user)
+                                     post: @post,
+                                     user: @other_user)
     end
 
     context "with user's permission" do
       it "sends an email to users who have favorited the post" do
-        favorite = @user.favorites.create(post: @post)
+        @user.favorites.where(post: @post).create
 
         allow(FavoriteMailer)
           .to receive(:new_comment)

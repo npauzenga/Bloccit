@@ -23,12 +23,17 @@ gem "will_paginate", "~> 3.0.5"
 gem "newrelic_rpm"
 gem "puma"
 
+group :test do
+  gem "database_cleaner"
+end
+
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution
   # and get a debugger console
   gem "byebug"
   gem "rspec-rails", "~> 3.0"
   gem "capybara"
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :development do
